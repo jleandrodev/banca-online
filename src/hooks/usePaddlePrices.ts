@@ -16,6 +16,15 @@ function getPriceAmounts(prices: PricePreviewResponse) {
   }, {} as PaddlePrices);
 }
 
+// Preços mockados para desenvolvimento local
+const mockPrices: PaddlePrices = {
+  pri_01hsxyh9txq4rzbrhbyngkhy46: '$9.99',
+  pri_01hsxycme6m95sejkz7sbz5e9g: '$19.99',
+  pri_01hsxyeb2bmrg618bzwcwvdd6q: '$199.99',
+  pri_01hsxyff091kyc9rjzx7zm6yqh: '$39.99',
+  pri_01hsxyfysbzf90tkh2wqbfxwa5: '$399.99',
+};
+
 export function usePaddlePrices(
   paddle: Paddle | undefined,
   country: string,
@@ -24,6 +33,13 @@ export function usePaddlePrices(
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    // Se não há paddle configurado, usa preços mockados
+    if (!paddle || !process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN) {
+      setPrices(mockPrices);
+      setLoading(false);
+      return;
+    }
+
     const paddlePricePreviewRequest: Partial<PricePreviewParams> = {
       items: getLineItems(),
       ...(country !== 'OTHERS' && { address: { countryCode: country } }),

@@ -2,9 +2,22 @@ import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 
 export async function createClient() {
+  // Se as variáveis de ambiente não estiverem definidas, retorna um mock
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    return {
+      auth: {
+        getUser: async () => ({ data: { user: { id: 'mock-user-id', email: 'mock@example.com' } }, error: null }),
+        getSession: async () => ({
+          data: { session: { user: { id: 'mock-user-id', email: 'mock@example.com' } } },
+          error: null,
+        }),
+      },
+    } as any;
+  }
+
   const cookieStore = await cookies();
 
-  return createServerClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {
+  return createServerClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY, {
     cookies: {
       getAll() {
         return cookieStore.getAll();

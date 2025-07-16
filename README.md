@@ -1,170 +1,129 @@
-# Paddle Billing subscriptions Next.js starter kit
+# Banca Online v3
 
-[Paddle Billing](https://www.paddle.com/billing?utm_source=dx&utm_medium=paddle-nextjs-starter-kit) is a complete digital product sales and subscription management platform, designed for modern software businesses. It helps you increase your revenue, retain customers, and scale your operations.
+Um projeto Next.js moderno com design sofisticado, gradientes e efeitos visuais avançados.
 
-This is a complete starter kit that you can use to build and deploy a [Next.js](https://nextjs.org/) SaaS app powered by Paddle Billing.
+## 🚀 Como Rodar Localmente
 
-> **Important:** This starter kit works with Paddle Billing. It does not support Paddle Classic. To work with Paddle Classic, see: [Paddle Classic API reference](https://developer.paddle.com/classic/api-reference/1384a288aca7a-api-reference?utm_source=dx&utm_medium=paddle-nextjs-starter-kit)
+### Pré-requisitos
 
-## Demo
+- Node.js >= 20
+- pnpm (recomendado) ou npm
 
-See it in action: [https://paddle-billing.vercel.app/](https://paddle-billing.vercel.app/?utm_source=dx&utm_medium=paddle-nextjs-starter-kit)
+### Instalação
 
-![Illustration showing two screens from the starter kit. On the left is three-tier pricing page. On the right is a subscription page, showing an itemized list of products on the subscription, the next payment, and previous payments.](hero.png)
+1. **Clone o repositório**
 
-## Features
+```bash
+git clone <seu-repositorio>
+cd banca-online-v3
+```
 
-- Three-tier pricing page that's fully localized for 200+ markets using [Paddle.js](https://developer.paddle.com/paddlejs/overview).
-- An integrated checkout experience built with [Paddle Checkout](https://developer.paddle.com/concepts/sell/self-serve-checkout), with secure [optimized payments](https://developer.paddle.com/concepts/payment-methods/overview?utm_source=dx&utm_medium=paddle-nextjs-starter-kit) by card, Apple Pay, Google Pay, PayPal, and others.
-- User management and auth handled by [Supabase](https://supabase.com/).
-- Ready-made screens to let customers manage their payments and subscriptions.
-- Automatic syncing of customer and subscription data between Paddle and your app using [webhooks](https://developer.paddle.com/webhooks/overview?utm_source=dx&utm_medium=paddle-nextjs-starter-kit).
+2. **Instale as dependências**
 
-## Stack
+```bash
+pnpm install
+```
 
-This starter kit is built with:
+3. **Rode o projeto**
 
-- **Framework:** [Next.js](https://nextjs.org/)
-- **Auth and user management:** [Supabase](https://supabase.com/)
-- **Component library:** [shadcn/ui](https://ui.shadcn.com/)
-- **CSS framework:** [Tailwind](https://tailwindcss.com/)
-- **Billing solution**: [Paddle Billing](https://www.paddle.com/billing?utm_source=dx&utm_medium=paddle-nextjs-starter-kit)
+```bash
+pnpm dev
+```
 
-## Prerequisites
+O projeto estará disponível em `http://localhost:3000`
 
-### Local dev environment
+## 🔧 Configuração
 
-- [Node.js](https://nodejs.org/en/download/package-manager/current) version > `20`
-- [npm](https://www.npmjs.com/), [Yarn](https://yarnpkg.com/), or [pnpm](https://pnpm.io/)
+### Desenvolvimento Local (Recomendado)
 
-### Accounts
+O projeto foi configurado para funcionar **sem** Supabase ou Paddle para desenvolvimento local. Todos os dados são mockados automaticamente.
 
-- [Vercel account](https://vercel.com/)
-- [Supabase account](https://supabase.com/)
-- [Paddle Billing](https://sandbox-login.paddle.com/signup?utm_source=dx&utm_medium=paddle-nextjs-starter-kit) — sandbox recommended
+### Produção
 
-## Step-by-step setup
+Para usar em produção, você precisará configurar:
 
-> **Important:** If you're totally new to Next.js and Paddle, we have a more complete tutorial on our dev docs: [Build and deploy Next.js app with Vercel and Supabase](https://developer.paddle.com/build/nextjs-supabase-vercel-starter-kit?utm_source=dx&utm_medium=paddle-nextjs-starter-kit)
+1. **Supabase** (opcional)
+   - Crie um projeto no [Supabase](https://supabase.com)
+   - Adicione as variáveis de ambiente:
 
-### 1. Deploy on Vercel
-
-#### Start deploy
-
-Click this button to clone this repo and create a new project in your Vercel account:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FPaddleHQ%2Fpaddle-nextjs-starter-kit&env=PADDLE_API_KEY,PADDLE_NOTIFICATION_WEBHOOK_SECRET,NEXT_PUBLIC_PADDLE_ENV,NEXT_PUBLIC_PADDLE_CLIENT_TOKEN&integration-ids=oac_VqOgBHqhEoFTPzGkPd7L0iH6&external-id=https%3A%2F%2Fgithub.com%2FPaddleHQ%2Fpaddle-nextjs-starter-kit%2Ftree%2Fmain)
-
-You can also [create a new application manually](https://vercel.com/new).
-
-#### Configure project
-
-Click **Add** to walk through integrating with Supabase. You'll be asked to authenticate with Supabase and confirm creating the database schemas.
-
-Then, enter Paddle environment variables:
-
-| Variable                             | Used for                                                                                                                                                                                                                                                                   | How to get it                                                                                                                                                                                                                                                |
-| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `PADDLE_API_KEY`                     | An [API key](https://developer.paddle.com/api-reference/about/authentication?utm_source=dx&utm_medium=paddle-nextjs-starter-kit), used for interacting with Paddle data in the backend. For example, syncing customer and subscription data with Supabase.                 | Go to [**Paddle > Developer tools > Authentication**](https://sandbox-vendors.paddle.com/authentication-v2) and create a new API key.                                                                                                                        |
-| `NEXT_PUBLIC_PADDLE_CLIENT_TOKEN`    | A [client-side key](https://developer.paddle.com/api-reference/about/authentication?utm_source=dx&utm_medium=paddle-nextjs-starter-kit), used for interacting with Paddle in the frontend. For example, getting localized prices for pricing pages and opening a checkout. | Go to [**Paddle > Developer tools > Authentication**](https://sandbox-vendors.paddle.com/authentication-v2) and create a new client-side token.                                                                                                              |
-| `PADDLE_NOTIFICATION_WEBHOOK_SECRET` | A secret key used for verifying that [webhooks](https://developer.paddle.com/webhooks/notification-destinations?utm_source=dx&utm_medium=paddle-nextjs-starter-kit) came from Paddle and haven't been tampered with in transit. Important for security.                    | Go to [**Paddle > Developer tools > Notifications**](https://sandbox-vendors.paddle.com/notifications), create a new notification destination for your Vercel deploy URL + `/api/webhook`, then edit to copy the secret key. See below for more information. |
-| `NEXT_PUBLIC_PADDLE_ENV`             | Environment for our Paddle account. This should match the kind of Paddle account you signed up for.                                                                                                                                                                        | Enter `sandbox` for sandbox accounts or `production` for live accounts.                                                                                                                                                                                      |
-
-Use `https://<PROJECTNAME>.vercel.app/api/webhook` as the endpoint URL for your notification destination, where `<PROJECTNAME>` is the name of your project in Vercel. For example, `https://paddle-billing.vercel.app/api/webhook`.
-
-If your project name isn't unique, your Vercel deploy URL may not match the URL you enter here. We can review and update this after deploy.
-
-#### Deploy
-
-Click **Deploy** when you're done. Wait for Vercel to build.
-
-### 2. Set up product catalog
-
-#### Clone locally
-
-1. Clone the repository you created earlier.
-
-   ```sh
-   git clone https://github.com/PATH_TO_YOUR_REPO
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=sua_url_do_supabase
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=sua_chave_anonima_do_supabase
    ```
 
-2. Install dependencies using npm, Yarn, or pnpm.
-
-   Install using npm:
-
-   ```sh
-   npm install
+2. **Paddle** (opcional)
+   - Configure o Paddle para pagamentos
+   - Adicione as variáveis de ambiente:
+   ```env
+   NEXT_PUBLIC_PADDLE_CLIENT_TOKEN=seu_token_do_paddle
+   NEXT_PUBLIC_PADDLE_ENV=sandbox
    ```
 
-   Install using Yarn:
+## 🎨 Características do Design
 
-   ```sh
-   yarn install
-   ```
+- **Tema escuro** por padrão
+- **Gradientes sofisticados** com efeitos de blur
+- **Componentes acessíveis** com Radix UI
+- **Animações suaves** com Tailwind CSS
+- **Layout responsivo** mobile-first
+- **Sistema de design consistente**
 
-   Install using pnpm:
+## 📁 Estrutura do Projeto
 
-   ```sh
-   pnpm install
-   ```
+```
+src/
+├── app/                    # App Router (Next.js 15)
+├── components/
+│   ├── ui/                # Componentes base
+│   ├── home/              # Páginas da home
+│   ├── dashboard/         # Páginas do dashboard
+│   ├── gradients/         # Componentes de gradiente
+│   └── shared/            # Componentes compartilhados
+├── styles/                # CSS customizado
+├── hooks/                 # Custom hooks
+├── lib/                   # Utilitários
+└── utils/                 # Helpers específicos
+```
 
-#### Add products and prices
+## 🛠️ Scripts Disponíveis
 
-[Create products and prices](https://developer.paddle.com/build/products/create-products-prices?utm_source=dx&utm_medium=paddle-nextjs-starter-kit) in Paddle for your subscription plans. We recommend creating three products for your plans, with two prices for each product to describe how you bill. For example, create a product called "Pro plan" with two prices for "monthly" and "annual."
+```bash
+pnpm dev          # Desenvolvimento
+pnpm build        # Build para produção
+pnpm start        # Servidor de produção
+pnpm lint         # Linting
+pnpm lint:fix     # Corrigir problemas de linting
+pnpm prettier     # Formatação de código
+```
 
-Next, copy your price IDs and update the [`pricing-tier.ts`](src/constants/pricing-tier.ts) constants file with your new prices.
+## 🎯 Funcionalidades
 
-Commit and push your changes to `main`.
+- ✅ **Homepage** com hero section e pricing
+- ✅ **Dashboard** com layout responsivo
+- ✅ **Autenticação** (mockada para desenvolvimento)
+- ✅ **Sistema de preços** (mockado para desenvolvimento)
+- ✅ **Design system** completo
+- ✅ **Gradientes e efeitos visuais**
+- ✅ **Componentes reutilizáveis**
 
-### 3. Add URL to Paddle and test
+## 🔄 Dados Mockados
 
-#### Add deploy URL to Paddle
+Para desenvolvimento local, o projeto usa dados mockados:
 
-You must add URLs to Paddle before you can launch a checkout from them. This protects you as a seller, making sure that only you're able to sell your products.
+- **Usuário**: `mock-user-id` com email `mock@example.com`
+- **Preços**: Valores fixos em USD
+- **Autenticação**: Sem verificação real
+- **Dashboard**: Dados de exemplo
 
-1. Go to [**Paddle > Checkout > Website approval**](https://sandbox-vendors.paddle.com/request-domain-approval), then enter your Vercel demo app link and click **Submit for approval**.
-2. Go to [**Paddle > Checkout > Checkout settings**](https://sandbox-vendors.paddle.com/checkout-settings), then enter your Vercel demo app link as your default payment link and click **Save**.
-3. Go to [**Paddle > Developer tools > Notifications**](https://sandbox-vendors.paddle.com/notifications), then check that the endpoint URL matches your Vercel demo app link domain.
+## 🎨 Personalização
 
-> **Important:** Website approval is instant for sandbox accounts, but may take a little while for live accounts while the Paddle seller verification team check your website.
+O projeto está pronto para ser personalizado:
 
-#### Test
+1. **Cores**: Edite as variáveis CSS em `src/styles/globals.css`
+2. **Gradientes**: Modifique os componentes em `src/components/gradients/`
+3. **Componentes**: Use o sistema de design em `src/components/ui/`
+4. **Páginas**: Crie novas páginas seguindo o padrão existente
 
-Open your Vercel demo site. You should notice that Paddle returns the prices you entered for each of your plans on your pricing page.
+## 📝 Licença
 
-Click **Get started** to launch a checkout for a plan, then take a test payment.
-
-If you're using a sandbox account, you can take a test payment using [our test card details](https://developer.paddle.com/concepts/payment-methods/credit-debit-card?utm_source=dx&utm_medium=paddle-nextjs-starter-kit):
-
-| Field                      | Value                                 |
-| -------------------------- | ------------------------------------- |
-| **Email address**          | An email address you own              |
-| **Country**                | Any valid country supported by Paddle |
-| **ZIP code** (if required) | Any valid ZIP or postal code          |
-| **Card number**            | `4242 4242 4242 4242`                 |
-| **Name on card**           | Any name                              |
-| **Expiration date**        | Any valid date in the future.         |
-| **Security code**          | `100`                                 |
-
-After checkout is completed, head back to the homepage and click **Sign in**. Have a look at the subscriptions and payments pages. They pull information from Paddle about a customer's subscriptions and transactions.
-
-### 4. Next steps
-
-You're done! 🎉 You can use this starter kit as a basis for building a SaaS app powered by Paddle Billing.
-
-Once you've built your app, transition to a live account to start taking real payments:
-
-1. [Sign up for a live account](https://login.paddle.com/signup?utm_source=dx&utm_medium=paddle-nextjs-starter-kit), then follow our [go-live checklist](https://developer.paddle.com/build/onboarding/go-live-checklist) to transition from sandbox to live.
-2. Update your environment variables so they're for your live account.
-3. Create new schemas in Supabase for your live data.
-4. [Set up Paddle Retain](https://developer.paddle.com/build/retain/set-up-retain-profitwell) to handle payment recovery.
-
-## Get help
-
-For help, contact the Paddle DX team at `team-dx@paddle.com`.
-
-## Learn more
-
-- [Build and deploy Next.js app with Vercel and Supabase](https://developer.paddle.com/build/nextjs-supabase-vercel-starter-kit?utm_source=dx&utm_medium=paddle-nextjs-starter-kit)
-- [Paddle API reference](https://developer.paddle.com/api-reference/overview?utm_source=dx&utm_medium=paddle-nextjs-starter-kit)
-- [Sign up for Paddle Billing](https://sandbox-login.paddle.com/signup?utm_source=dx&utm_medium=paddle-nextjs-starter-kit)
+Este projeto está sob a licença MIT.

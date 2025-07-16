@@ -8,6 +8,9 @@ interface Props {
 }
 
 export default function Header({ user }: Props) {
+  // Para desenvolvimento local, mostra um usuário mockado
+  const mockUser = process.env.NODE_ENV === 'development' && !user ? { id: 'mock-user-id' } : user;
+
   return (
     <nav>
       <div className="mx-auto max-w-7xl relative px-[32px] py-[18px] flex items-center justify-between">
@@ -18,7 +21,7 @@ export default function Header({ user }: Props) {
         </div>
         <div className="flex flex-1 items-center justify-end">
           <div className="flex space-x-4">
-            {user?.id ? (
+            {mockUser?.id ? (
               <Button variant={'secondary'} asChild={true}>
                 <Link href={'/dashboard'}>Dashboard</Link>
               </Button>

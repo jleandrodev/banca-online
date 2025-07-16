@@ -16,6 +16,7 @@ export function Pricing({ country }: Props) {
   const { prices, loading } = usePaddlePrices(paddle, country);
 
   useEffect(() => {
+    // Só inicializa o Paddle se as variáveis de ambiente estiverem definidas
     if (process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN && process.env.NEXT_PUBLIC_PADDLE_ENV) {
       initializePaddle({
         token: process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN,
