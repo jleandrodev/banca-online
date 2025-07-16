@@ -17,9 +17,12 @@ export function DashboardLayout({ children }: Props) {
       <div className="hidden border-r md:block relative">
         <div className="flex h-full flex-col gap-2">
           <div className="flex items-center pt-8 pl-6 pb-10">
-            <Link href="/" className="flex items-center gap-2 font-semibold">
-              <Image src={'/assets/icons/logo/aeroedit-logo-icon.svg'} alt={'AeroEdit'} width={41} height={41} />
-            </Link>
+            <div className="flex items-center gap-2 font-semibold">
+              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                <span className="text-primary-foreground font-bold">B</span>
+              </div>
+              <span>Banca Online</span>
+            </div>
           </div>
           <div className="flex flex-col grow">
             <Sidebar />

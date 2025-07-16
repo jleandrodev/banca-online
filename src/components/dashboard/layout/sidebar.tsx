@@ -1,6 +1,6 @@
 'use client';
 
-import { Album, CreditCard, Home } from 'lucide-react';
+import { BookOpen, Home, Library, Coins } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
@@ -12,14 +12,19 @@ const sidebarItems = [
     href: '/dashboard',
   },
   {
-    title: 'Subscriptions',
-    icon: <Album className="h-6 w-6" />,
-    href: '/dashboard/subscriptions',
+    title: 'Catálogo',
+    icon: <BookOpen className="h-6 w-6" />,
+    href: '/catalogo',
   },
   {
-    title: 'Payments',
-    icon: <CreditCard className="h-6 w-6" />,
-    href: '/dashboard/payments',
+    title: 'Minha Biblioteca',
+    icon: <Library className="h-6 w-6" />,
+    href: '/biblioteca',
+  },
+  {
+    title: 'Pontos',
+    icon: <Coins className="h-6 w-6" />,
+    href: '/dashboard',
   },
 ];
 
