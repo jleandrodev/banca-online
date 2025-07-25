@@ -17,16 +17,16 @@ export default function LoginPage() {
           <LoginCardGradient />
           <LoginForm />
         </div>
-        <GhLoginButton label={'Log in with GitHub'} />
+        <GhLoginButton label={'Login com GitHub'} />
         <div
           className={
             'mx-auto w-[343px] md:w-[488px] bg-background/80 backdrop-blur-[6px] px-6 md:px-16 pt-0 py-8 gap-6 flex flex-col items-center justify-center rounded-b-lg'
           }
         >
           <div className={'text-center text-muted-foreground text-sm mt-4 font-medium'}>
-            Don’t have an account?{' '}
+            Ainda não tem uma conta?{' '}
             <a href={'/signup'} className={'text-white'}>
-              Sign up
+              Cadastre-se
             </a>
           </div>
         </div>

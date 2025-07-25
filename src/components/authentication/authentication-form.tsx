@@ -13,7 +13,7 @@ export function AuthenticationForm({ email, onEmailChange, onPasswordChange, pas
     <>
       <div className="grid w-full max-w-sm items-center gap-1.5 mt-2">
         <Label className={'text-muted-foreground leading-5'} htmlFor="email">
-          Email address
+          CPF ou email
         </Label>
         <Input
           className={'border-border rounded-xs'}
@@ -26,7 +26,7 @@ export function AuthenticationForm({ email, onEmailChange, onPasswordChange, pas
       </div>
       <div className="grid w-full max-w-sm items-center gap-1.5">
         <Label className={'text-muted-foreground leading-5'} htmlFor="password">
-          Password
+          Senha
         </Label>
         <Input
           className={'border-border rounded-xs'}
