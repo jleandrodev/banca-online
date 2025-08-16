@@ -1,0 +1,5 @@
+[33m84bfac9[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeat/auth[m[33m, [m[1;31morigin/feat/auth[m[33m, [m[1;31morigin/development[m[33m, [m[1;32mdevelopment[m[33m)[m feat: adjustments on custommers routes
+[33m61175ec[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m feat: create a client routes
+[33mc47e3b6[m feat: Home LP created
+[33m4d2dfa7[m feat: configure project to run locally without Supabase and Paddle dependencies
+[33m0526c81[m chore(deps): bump the minor-patch-dependencies group with 3 updates (#63)
