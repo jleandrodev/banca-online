@@ -6,6 +6,8 @@ import { PoweredByPaddle } from '@/components/home/footer/powered-by-paddle';
 import '@/styles/checkout.css';
 import { createClient } from '@/utils/supabase/server';
 
+export const dynamic = 'force-dynamic';
+
 export default async function SuccessPage() {
   const supabase = await createClient();
   const { data } = await supabase.auth.getUser();

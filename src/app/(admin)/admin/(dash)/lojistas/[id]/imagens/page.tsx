@@ -7,6 +7,8 @@ import { Separator } from '@/components/ui/separator';
 import { OrganizationService } from '@/lib/services/organization.service';
 import { ImageManager } from '@/components/admin/lojistas/image-manager';
 
+export const dynamic = 'force-dynamic';
+
 interface OrganizationImagesPageProps {
   params: Promise<{ id: string }>;
 }

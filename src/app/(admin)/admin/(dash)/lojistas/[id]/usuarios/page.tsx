@@ -10,6 +10,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
+export const dynamic = 'force-dynamic';
+
 interface UsuariosPageProps {
   params: Promise<{ id: string }>;
 }
@@ -49,9 +51,7 @@ export default async function UsuariosPage({ params }: UsuariosPageProps) {
         </Link>
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Usuários da Organização</h1>
-          <p className="text-muted-foreground">
-            {organization.name} - Gerencie os clientes e seus pontos
-          </p>
+          <p className="text-muted-foreground">{organization.name} - Gerencie os clientes e seus pontos</p>
         </div>
       </div>
 
@@ -95,18 +95,14 @@ export default async function UsuariosPage({ params }: UsuariosPageProps) {
       <Card>
         <CardHeader>
           <CardTitle>Lista de Usuários</CardTitle>
-          <CardDescription>
-            Todos os clientes cadastrados nesta organização
-          </CardDescription>
+          <CardDescription>Todos os clientes cadastrados nesta organização</CardDescription>
         </CardHeader>
         <CardContent>
           {users.length === 0 ? (
             <div className="text-center py-8">
               <Users className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-lg font-medium mb-2">Nenhum usuário encontrado</h3>
-              <p className="text-muted-foreground">
-                Esta organização ainda não possui clientes cadastrados.
-              </p>
+              <p className="text-muted-foreground">Esta organização ainda não possui clientes cadastrados.</p>
             </div>
           ) : (
             <div className="rounded-md border">
@@ -129,14 +125,10 @@ export default async function UsuariosPage({ params }: UsuariosPageProps) {
                         {user.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')}
                       </TableCell>
                       <TableCell>
-                        {user.fullName || (
-                          <span className="text-muted-foreground">Não informado</span>
-                        )}
+                        {user.fullName || <span className="text-muted-foreground">Não informado</span>}
                       </TableCell>
                       <TableCell>
-                        {user.email || (
-                          <span className="text-muted-foreground">Não informado</span>
-                        )}
+                        {user.email || <span className="text-muted-foreground">Não informado</span>}
                       </TableCell>
                       <TableCell>
                         <Badge variant="secondary" className="bg-blue-500/20 text-blue-400">
@@ -144,18 +136,16 @@ export default async function UsuariosPage({ params }: UsuariosPageProps) {
                         </Badge>
                       </TableCell>
                       <TableCell>
-                        <Badge variant="outline">
-                          {user._count?.redemptions || 0} resgates
+                        <Badge variant="outline">{user._count?.redemptions || 0} resgates</Badge>
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant={user.isActive ? 'default' : 'destructive'}>
+                          {user.isActive ? 'Ativo' : 'Inativo'}
                         </Badge>
                       </TableCell>
                       <TableCell>
-                        <Badge variant={user.isActive ? "default" : "destructive"}>
-                          {user.isActive ? "Ativo" : "Inativo"}
-                        </Badge>
-                      </TableCell>
-                      <TableCell>
-                        <Badge variant={user.firstAccess ? "destructive" : "default"}>
-                          {user.firstAccess ? "Pendente" : "Configurado"}
+                        <Badge variant={user.firstAccess ? 'destructive' : 'default'}>
+                          {user.firstAccess ? 'Pendente' : 'Configurado'}
                         </Badge>
                       </TableCell>
                     </TableRow>

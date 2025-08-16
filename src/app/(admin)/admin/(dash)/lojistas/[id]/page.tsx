@@ -7,6 +7,8 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { OrganizationService } from '@/lib/services/organization.service';
 
+export const dynamic = 'force-dynamic';
+
 interface OrganizationDetailsPageProps {
   params: Promise<{ id: string }>;
 }

@@ -4,6 +4,8 @@ import { CheckoutHeader } from '@/components/checkout/checkout-header';
 import { CheckoutContents } from '@/components/checkout/checkout-contents';
 import { createClient } from '@/utils/supabase/server';
 
+export const dynamic = 'force-dynamic';
+
 export default async function CheckoutPage() {
   const supabase = await createClient();
   const { data } = await supabase.auth.getUser();
