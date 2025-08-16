@@ -1,16 +1,17 @@
+import type { Browser } from 'puppeteer';
 import puppeteer from 'puppeteer';
 import { PDFDocument } from 'pdf-lib';
 
 export class PdfConverterService {
-  private browser: puppeteer.Browser | null = null;
+  private browser: Browser | null = null;
 
   /**
    * Inicializar o browser (reutilizar instância)
    */
-  private async getBrowser(): Promise<puppeteer.Browser> {
+  private async getBrowser(): Promise<Browser> {
     if (!this.browser) {
       this.browser = await puppeteer.launch({
-        headless: 'new',
+        headless: true,
         args: [
           '--no-sandbox',
           '--disable-setuid-sandbox',
@@ -28,7 +29,7 @@ export class PdfConverterService {
   /**
    * Converter primeira página do PDF para imagem PNG
    */
-  async convertFirstPageToImage(pdfBuffer: ArrayBuffer): Promise<Buffer> {
+  async convertFirstPageToImage(pdfBuffer: ArrayBuffer | Uint8Array): Promise<Buffer> {
     try {
       // Carregar o PDF
       const pdfDoc = await PDFDocument.load(pdfBuffer);

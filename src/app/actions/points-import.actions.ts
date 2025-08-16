@@ -6,13 +6,17 @@ import { authOptions } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
 
 export async function uploadPointsSpreadsheetAction(
-  formData: FormData
-): Promise<{ success: boolean; result?: any; error?: string }> {
+  formData: FormData,
+): Promise<{
+  success: boolean;
+  result?: { successRecords: number; errorRecords: number; totalRecords: number };
+  error?: string;
+}> {
   try {
     console.log('🚀 Iniciando upload de planilha...');
-    
+
     const session = await getServerSession(authOptions);
-    
+
     if (!session?.user || session.user.role !== 'ADMIN_MASTER') {
       return { success: false, error: 'Acesso negado' };
     }
@@ -31,11 +35,7 @@ export async function uploadPointsSpreadsheetAction(
     console.log('✅ Dados válidos, processando planilha...');
 
     const pointsImportService = new PointsImportService();
-    const result = await pointsImportService.processSpreadsheet(
-      file,
-      organizationId,
-      session.user.id
-    );
+    const result = await pointsImportService.processSpreadsheet(file, organizationId, session.user.id);
 
     console.log('✅ Planilha processada com sucesso');
 
@@ -46,9 +46,9 @@ export async function uploadPointsSpreadsheetAction(
     return { success: true, result };
   } catch (error) {
     console.error('❌ Erro ao processar planilha:', error);
-    return { 
-      success: false, 
-      error: error instanceof Error ? error.message : 'Erro interno do servidor' 
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Erro interno do servidor',
     };
   }
 }

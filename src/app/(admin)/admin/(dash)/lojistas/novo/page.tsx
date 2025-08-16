@@ -140,6 +140,15 @@ export default function NovoLojistaPage() {
         return;
       }
 
+      if (!result.data) {
+        toast({
+          title: 'Erro',
+          description: 'Erro ao criar organização',
+          variant: 'destructive',
+        });
+        return;
+      }
+
       const organizationId = result.data.id;
 
       // Fazer upload das imagens se houver

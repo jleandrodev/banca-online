@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs';
 import { UserService } from '@/lib/services/user.service';
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
+  // adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
       name: 'credentials',
@@ -68,18 +68,18 @@ export const authOptions: NextAuthOptions = {
           return {
             id: user.id,
             cpf: user.cpf,
-            email: user.email,
-            name: user.fullName,
+            email: user.email || undefined,
+            name: user.fullName || undefined,
             role: user.role,
-            organizationId: user.organizationId,
+            organizationId: user.organizationId || undefined,
             organization: user.organization
               ? {
                   id: user.organization.id,
                   name: user.organization.name,
                   slug: user.organization.slug,
-                  logoUrl: user.organization.logoUrl,
+                  logoUrl: user.organization.logoUrl || undefined,
                 }
-              : null,
+              : undefined,
             firstAccess: user.firstAccess,
             points: user.points,
           };

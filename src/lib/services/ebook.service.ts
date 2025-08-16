@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma';
-import { Ebook } from '@prisma/client';
+import type { Ebook } from '@prisma/client';
 
 export class EbookService {
   async findAll(): Promise<Ebook[]> {

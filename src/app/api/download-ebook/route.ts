@@ -89,7 +89,7 @@ export async function POST(request: NextRequest) {
         let filePath = '';
 
         // Padrão 1: .../storage/v1/object/public/bucket/file
-        const storageIndex = urlParts.findIndex((part) => part === 'storage');
+        const storageIndex = urlParts.findIndex((part: string) => part === 'storage');
         if (storageIndex !== -1 && urlParts[storageIndex + 4] === 'public') {
           bucketName = urlParts[storageIndex + 5];
           filePath = urlParts.slice(storageIndex + 6).join('/');
@@ -109,7 +109,7 @@ export async function POST(request: NextRequest) {
           return NextResponse.json({ error: `Erro ao baixar arquivo do Supabase: ${error.message}` }, { status: 500 });
         }
 
-        console.log('Download do Supabase bem-sucedido, tamanho:', data?.length);
+        console.log('Download do Supabase bem-sucedido, tamanho:', data?.size);
 
         // Converter para blob
         const blob = new Blob([data], { type: 'application/pdf' });

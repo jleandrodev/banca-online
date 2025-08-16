@@ -5,11 +5,12 @@ import { FirstAccessForm } from '@/components/organization/first-access-form';
 
 interface FirstAccessPageProps {
   params: Promise<{ orgSlug: string }>;
-  searchParams: { cpf?: string };
+  searchParams: Promise<{ cpf?: string }>;
 }
 
 export default async function FirstAccessPage({ params, searchParams }: FirstAccessPageProps) {
   const resolvedParams = await params;
+  const resolvedSearchParams = await searchParams;
   const organizationService = new OrganizationService();
   const organization = await organizationService.findBySlug(resolvedParams.orgSlug);
 
@@ -58,7 +59,7 @@ export default async function FirstAccessPage({ params, searchParams }: FirstAcc
           </div>
 
           {/* Formulário de primeiro acesso */}
-          <FirstAccessForm organization={organization} initialCpf={searchParams.cpf} />
+          <FirstAccessForm organization={organization} initialCpf={resolvedSearchParams.cpf} />
 
           {/* Voltar ao login */}
           <div className="mt-6 text-center">

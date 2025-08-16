@@ -1,4 +1,3 @@
-
 import { notFound } from 'next/navigation';
 import { ArrowLeft, Edit, Image as ImageIcon, Users, BookOpen, Gift } from 'lucide-react';
 import Link from 'next/link';
@@ -115,7 +114,7 @@ export default async function OrganizationDetailsPage({ params }: OrganizationDe
                 <Users className="h-5 w-5 text-blue-600" />
               </div>
               <div>
-                <p className="text-2xl font-bold">{organization._count?.users || 0}</p>
+                <p className="text-2xl font-bold">{organization.users?.length || 0}</p>
                 <p className="text-sm text-muted-foreground">Usuários</p>
               </div>
             </div>
@@ -125,7 +124,7 @@ export default async function OrganizationDetailsPage({ params }: OrganizationDe
                 <BookOpen className="h-5 w-5 text-green-600" />
               </div>
               <div>
-                <p className="text-2xl font-bold">{organization._count?.ebooks || 0}</p>
+                <p className="text-2xl font-bold">{organization.ebooks?.length || 0}</p>
                 <p className="text-sm text-muted-foreground">Ebooks</p>
               </div>
             </div>
@@ -135,7 +134,7 @@ export default async function OrganizationDetailsPage({ params }: OrganizationDe
                 <Gift className="h-5 w-5 text-purple-600" />
               </div>
               <div>
-                <p className="text-2xl font-bold">{organization._count?.redemptions || 0}</p>
+                <p className="text-2xl font-bold">{organization.redemptions?.length || 0}</p>
                 <p className="text-sm text-muted-foreground">Resgates</p>
               </div>
             </div>

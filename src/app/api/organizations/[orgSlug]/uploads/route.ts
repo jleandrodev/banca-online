@@ -51,7 +51,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     console.log('📊 API Uploads - Importações encontradas:', imports.length);
 
     // Mapear para o formato esperado pelo frontend
-    const uploadHistory = imports.map((importRecord) => ({
+    const uploadHistory = imports.map((importRecord: any) => ({
       id: importRecord.id,
       fileName: importRecord.fileName,
       createdAt: importRecord.createdAt.toISOString(),

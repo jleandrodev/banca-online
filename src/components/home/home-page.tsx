@@ -64,7 +64,8 @@ function StatsSection() {
 
 export function HomePage() {
   const supabase = createClient();
-  const { user } = useUserInfo(supabase);
+  // const { user } = useUserInfo(supabase);
+  const user = null;
   const [country, setCountry] = useState('US');
 
   return (
@@ -74,7 +75,7 @@ export function HomePage() {
         <Header user={user} />
         <HeroSection />
         <StatsSection />
-        <Pricing country={country} />
+        {/* <Pricing country={country} /> */}
         <Footer />
       </div>
     </>

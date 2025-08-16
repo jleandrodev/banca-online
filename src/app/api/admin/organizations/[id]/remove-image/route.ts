@@ -81,7 +81,7 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
         break;
     }
 
-    const updatedOrganization = await organizationService.update(organizationId, updateData);
+    const updatedOrganization = await organizationService.update({ id: organizationId, ...updateData });
 
     if (!updatedOrganization) {
       return NextResponse.json({ success: false, error: 'Erro ao atualizar organização' }, { status: 500 });

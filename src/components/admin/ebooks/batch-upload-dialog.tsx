@@ -281,9 +281,7 @@ DICAS:
                           <Badge variant={result.success ? 'default' : 'destructive'}>
                             {result.success ? 'Sucesso' : 'Erro'}
                           </Badge>
-                          {result.error && (
-                            <AlertCircle className="h-4 w-4 text-muted-foreground" title={result.error} />
-                          )}
+                          {result.error && <AlertCircle className="h-4 w-4 text-muted-foreground" />}
                         </div>
                       </div>
                     ))}

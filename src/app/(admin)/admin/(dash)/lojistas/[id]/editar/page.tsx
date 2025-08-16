@@ -117,7 +117,7 @@ export default function EditarLojistaPage({ params }: EditarLojistaPageProps) {
     const checkSlug = async () => {
       if (formData.slug && formData.slug.length > 2) {
         const result = await checkSlugAvailabilityAction(formData.slug, formData.id);
-        if (result.success) {
+        if (result.success && result.available !== undefined) {
           setSlugAvailable(result.available);
         }
       }
@@ -364,7 +364,7 @@ export default function EditarLojistaPage({ params }: EditarLojistaPageProps) {
   return (
     <div className="container mx-auto py-6">
       <div className="flex items-center gap-4 mb-6">
-        <Link href={`/admin/lojistas/${params.id}`}>
+        <Link href={`/admin/lojistas/${organizationId}`}>
           <Button variant="outline" size="icon">
             <ArrowLeft className="h-4 w-4" />
           </Button>
@@ -566,7 +566,7 @@ export default function EditarLojistaPage({ params }: EditarLojistaPageProps) {
           <Button type="submit" disabled={isLoading}>
             {isLoading ? 'Salvando...' : 'Salvar Alterações'}
           </Button>
-          <Link href={`/admin/lojistas/${params.id}`}>
+          <Link href={`/admin/lojistas/${organizationId}`}>
             <Button type="button" variant="outline">
               Cancelar
             </Button>

@@ -149,13 +149,20 @@ export class OrganizationService {
 
   // Verificar se slug está disponível
   async isSlugAvailable(slug: string, excludeId?: string): Promise<boolean> {
-    const where: Prisma.OrganizationWhereInput = { slug };
     if (excludeId) {
-      where.NOT = { id: excludeId };
+      const existing = await prisma.organization.findFirst({
+        where: {
+          slug,
+          NOT: { id: excludeId },
+        },
+      });
+      return !existing;
+    } else {
+      const existing = await prisma.organization.findUnique({
+        where: { slug },
+      });
+      return !existing;
     }
-
-    const existing = await prisma.organization.findUnique({ where });
-    return !existing;
   }
 
   // Gerar slug único baseado no nome

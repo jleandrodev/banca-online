@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Upload, FileSpreadsheet, Users, Coins, Calendar, CheckCircle, AlertCircle } from 'lucide-react';
+import { Upload, FileSpreadsheet, Users, Coins, Calendar, CheckCircle } from 'lucide-react';
 
 export default function AdminPontosPage() {
   // Dados mockados
