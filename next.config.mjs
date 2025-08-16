@@ -20,7 +20,12 @@ const nextConfig = {
       },
     ],
   },
-
+  // Configurações para otimizar build no Netlify
+  experimental: {
+    optimizePackageImports: ['@radix-ui/react-icons', 'lucide-react'],
+  },
+  // Desabilitar telemetria
+  telemetry: false,
 };
 
 export default nextConfig;

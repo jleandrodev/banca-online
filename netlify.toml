@@ -1,6 +1,10 @@
 [build]
-  command = "npm run build"
+  command = "npm install && npx prisma generate && npm run build"
   publish = ".next"
 
 [build.environment]
   NODE_VERSION = "20"
+  NPM_CONFIG_CACHE = "/opt/buildhome/.npm"
+
+[build.processing]
+  skip_processing = false
