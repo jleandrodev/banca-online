@@ -15,7 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Search, Filter, BookOpen, Star, Eye, X, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
+import { Search, BookOpen, Eye, X, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 
 interface Ebook {
   id: string;
@@ -32,7 +32,7 @@ interface Ebook {
 export default function CatalogoPage() {
   const [ebooks, setEbooks] = useState<Ebook[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error] = useState<string | null>(null);
   const [categoriaSelecionada, setCategoriaSelecionada] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('recentes');
@@ -40,7 +40,7 @@ export default function CatalogoPage() {
   const [totalPages, setTotalPages] = useState(1);
   const [categories, setCategories] = useState<string[]>([]);
 
-  const itemsPerPage = 12;
+  // const itemsPerPage = 12;
 
   // Dados mockados do catálogo
   const ebooksData = [
@@ -188,10 +188,10 @@ export default function CatalogoPage() {
     ? ebooks.filter((ebook) => ebook.category === categoriaSelecionada)
     : ebooks;
 
-  const handleCategoriaClick = (categoria: string) => {
-    setCategoriaSelecionada(categoria === categoriaSelecionada ? null : categoria);
-    setCurrentPage(1);
-  };
+  // const handleCategoriaClick = (categoria: string) => {
+  //   setCategoriaSelecionada(categoria === categoriaSelecionada ? null : categoria);
+  //   setCurrentPage(1);
+  // };
 
   const limparFiltro = () => {
     setCategoriaSelecionada(null);

@@ -24,8 +24,6 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['@radix-ui/react-icons', 'lucide-react'],
   },
-  // Desabilitar telemetria
-  telemetry: false,
 };
 
 export default nextConfig;

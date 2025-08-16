@@ -46,7 +46,7 @@ export default function EditarLojistaPage({ params }: EditarLojistaPageProps) {
   // Carregar dados da organização
   useEffect(() => {
     if (!organizationId) return;
-    
+
     const loadOrganization = async () => {
       try {
         console.log('🔍 Carregando organização:', organizationId);
@@ -262,7 +262,12 @@ export default function EditarLojistaPage({ params }: EditarLojistaPageProps) {
       }
 
       // Preparar dados para envio
-      const updateData: any = {
+      const updateData: {
+        id: string;
+        name: string;
+        cnpj: string;
+        slug: string;
+      } = {
         id: formData.id,
         name: formData.name,
         cnpj: formData.cnpj,

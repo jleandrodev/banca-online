@@ -38,28 +38,27 @@ export default function UploadPlanilhaPage({ params }: UploadPlanilhaPageProps) 
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploadResult, setUploadResult] = useState<PointsImportResult | null>(null);
-  const [uploadHistory, setUploadHistory] = useState<UploadHistory[]>([]);
-  const [stats, setStats] = useState({
+  const [uploadHistory] = useState<UploadHistory[]>([]);
+  const [stats] = useState({
     totalUsers: 0,
     totalPoints: 0,
     lastUpload: '',
     totalUploads: 0,
   });
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading] = useState(true);
   const { toast } = useToast();
 
   // Carregar dados iniciais
   useEffect(() => {
     const loadData = async () => {
-      setIsLoading(true);
       try {
         await Promise.all([loadUploadHistory(), loadStats()]);
-      } finally {
-        setIsLoading(false);
+      } catch (error) {
+        console.error('Erro ao carregar dados:', error);
       }
     };
     loadData();
-  }, []);
+  }, [organizationId]);
 
   const loadUploadHistory = async () => {
     try {
